@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="main">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="assets/libraries/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.js"></script>
+    <script src="assets/component/main.js"></script>
+</head>
+<body>
+    <main class="read-width">
+        <form class="read-width" ng-controller="login">
+            <img src="https://miro.medium.com/max/853/1*ekOYsVAtOKFeeJyhv5NVhA.jpeg" />
+            <input type="text" placeholder="Email" ng-model="user.email" />{{test}}
+            <input type="password" placeholder="Contraseña" ng-model="user.password" />
+            <input type="button" value="Ingresar" ng-click="user.checkLogin()" />
+        </form>
+    </main>
+    <!-- <footer ng-bind="site"></footer> -->
+</body>
+</html>

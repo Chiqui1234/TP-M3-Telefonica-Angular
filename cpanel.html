@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="cpanel">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <script src="assets/libraries/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.js"></script>
+    <script src="assets/component/cpanel.js"></script>
+    <script src="assets/libraries/day.js"></script>
+</head>
+<body> 
+    <div id="sidebar">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> <div class="texto">Inicio</div></a></li>
+            <li>
+                <a><i class="fas fa-user"></i> <div class="texto">Usuarios</div></a>
+                <ul class="dropdown">
+                    <li><a id="agregarUsuario"><div class="texto">Agregar</div></a></li>
+                    <li><a id="comprobarUsuario"><div class="texto">Comprobar</div></a></li>
+                </ul>
+            </li>
+            <li>
+                <a onclick="eraseCookie('user');$(location).attr('href', 'index.html');"><i class="fas fa-sign-out-alt"></i> <div class="texto">Salir</div></a>
+            </li>
+        </ul>
+    </div>
+    <main class="grid-flex" ng-controller="user as users"> <!-- Llamo al controlador user y ruteo a mi variable 'users'. Esto me sirve para el ng-repeat de '#users-added li' -->
+        <div id="day" class="widget ok padding">
+
+        </div>
+        <div id="users-add" class="widget ok padding">
+            <input type="text" ng-model="users.name" placeholder="Nombre" id="">
+            <input type="text" ng-model="users.lastName" placeholder="Apellido" id="">
+            <input type="number" ng-model="users.id" placeholder="Legajo" id="">
+            <input type="button" ng-click="users.add()" value="Agregar">
+        </div>
+        <div id="users-added" class="widget ok padding">
+            <h3>Alumnos agregados</h3>
+            <li class="minimal-list" ng-repeat="userr in users.list"> <!-- 'userr' será el array users.list, que recorro con ng-repeat -->
+                {{userr.name}} {{userr.lastName}} ({{userr.id}})
+            </li>
+        </div>
+    </main>
+    <script>
+        let dayInfo = day_js();
+        let dayDiv = document.getElementById('day');
+        dayDiv.innerHTML = '<p>Hoy es '+dayInfo.dayName+' '+dayInfo.dayNumber+' de '+dayInfo.month+'.</p>';
+    </script>
+</body>
+</html>
